@@ -18,7 +18,6 @@ const routes = [
     name: 'SideBar',
     component: () => import('../views/layout/index.vue'),
     children: [
-      { path: '/home', name: 'Home', component: () => import('../views/home/index.vue') },
       { path: '/accept', name: 'Accept', component: () => import('../views/accept/index.vue') },
       { path: '/day', name: 'Day', component: () => import('../views/day/index.vue') },
       { path: '/difference', name: 'Difference', component: () => import('../views/difference/index.vue') },

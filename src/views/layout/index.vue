@@ -49,10 +49,6 @@
                 <el-menu-item index="1-4-1">选项1</el-menu-item>
                 </el-submenu>
             </el-submenu> -->
-          <el-menu-item index="home">
-            <i class="el-icon-menu"></i>
-            <span>首页</span>
-          </el-menu-item>
           <el-menu-item index="accept">
             <i class="el-icon-menu"></i>
             <span slot="title">对账文件接受</span>
