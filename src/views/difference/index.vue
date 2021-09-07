@@ -2,83 +2,103 @@
   <div>
     <!-- 对账文件接受情况 -->
     <el-card>
-      <el-form label-width="90px" label-position="left">
-        <el-row type="flex">
+      <el-form label-width="90px" label-position="left" :model="formData">
+        <el-row type="flex" :gutter="20">
           <!-- 省公司 -->
           <el-col>
             <el-form-item label="省公司">
-              <el-select> </el-select>
+              <el-select v-model="formData.provincial_company">
+                <el-option v-for="item in ProvincialCompany" :key="item.id" :label="item.province" :value="item.province"></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
           <!-- 业务类型 -->
           <el-col>
             <el-form-item label="业务类型">
-             <el-select v-model="typeValue">
-                <el-option v-for="item in typeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.type">
+                <el-option v-for="item in typeList" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 对端运营商 -->
           <el-col>
             <el-form-item label="对端运营商">
-              <el-select v-model="operatorsValue">
-                <el-option v-for="item in operators" :key="item.key" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.operatorsValue">
+                <el-option v-for="item in operators" :key="item.key" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 结算方向 -->
           <el-col>
             <el-form-item label="结算方向">
-              <el-select v-model="SettlementDirectionValue">
-                <el-option v-for="item in SettlementDirection" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.SettlementDirectionValue">
+                <el-option v-for="item in SettlementDirection" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
-          <!-- 处理日期时间 -->
-          <el-col :span="8">
-            <el-form-item label="处理日期时间区间" label-width="125px">
-              <el-date-picker
-                v-model="value1"
-                type="daterange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-              >
-              </el-date-picker>
-            </el-form-item>
-          </el-col>
         </el-row>
-        <el-row type="flex">
+        <el-row type="flex" :gutter="20">
           <!-- 主叫长途类型 -->
           <el-col >
             <el-form-item label="主叫长途类型" label-width='100px'>
-              <el-select v-model="MainLongTypeValue">
-                <el-option v-for="item in MainLongType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.MainLongTypeValue">
+                <el-option v-for="item in LongType" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 被叫长途类型 -->
           <el-col >
             <el-form-item label="被叫长途类型" label-width='100px'>
-              <el-select v-model="KnownLongTypeValue">
-                <el-option v-for="item in KnownLongType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.KnownLongTypeValue">
+                <el-option v-for="item in LongType" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 主叫网络类型 -->
           <el-col >
             <el-form-item label="主叫网络类型" label-width='100px'>
-              <el-select v-model="KnownNetworkTypeValue">
-                <el-option v-for="item in KnownNetworkType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              <el-select v-model="formData.KnownNetworkTypeValue">
+                <el-option v-for="item in NetworkType" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <!-- 被叫网络类型 -->
           <el-col >
             <el-form-item label="被叫网络类型" label-width='100px'>
-               <el-select v-model="MainNetworkTypeValue">
-                <el-option v-for="item in MainNetworkType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+               <el-select v-model="formData.MainNetworkTypeValue">
+                <el-option v-for="item in NetworkType" :key="item.value" :label="item.label" :value="item.label"></el-option>
               </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row type="flex" :gutter="20"  >
+          <!-- 主叫号码类型 -->
+          <el-col>
+            <el-form-item  label="主叫号码类型" label-width='100px'>
+              <el-select v-model="formData.KnownTelTypeValue">
+                  <el-option v-for="item in TelType" :key="item.value" :label="item.label" :value="item.label"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <!-- 被叫号码类型 -->
+          <el-col>
+            <el-form-item  label="主叫号码类型" label-width='100px'>
+              <el-select v-model="formData.MainTelTypeValue">
+                  <el-option v-for="item in TelType" :key="item.value" :label="item.label" :value="item.label"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+           <!-- 处理日期时间 -->
+          <el-col>
+            <el-form-item label="处理日期时间区间" label-width="125px">
+              <el-date-picker
+                v-model="formData.time"
+                type="daterange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+              >
+              </el-date-picker>
             </el-form-item>
           </el-col>
         </el-row>
@@ -118,65 +138,53 @@
   </div>
 </template>
 <script>
+import { ProvincialCompany, typeList, operators, SettlementDirection, LongType, NetworkType, TelType } from '../../untils/data'
 export default {
+  name: 'Difference',
   data () {
     return {
-      // 业务类型
-      typeList: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '语音' },
-        { value: '2', label: '短信' },
-        { value: '3', label: '彩信' }
-      ],
-      typeValue: '0',
-      // 对端运营商
-      operators: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '联通' },
-        { value: '2', label: '电信' },
-        { value: '3', label: '铁通' }
-      ],
-      operatorsValue: '0',
-      // 结算方向
-      SettlementDirection: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '结入' },
-        { value: '2', label: '结出' }
-      ],
-      SettlementDirectionValue: '0',
-      // 主叫长途类型
-      MainLongType: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '本地' },
-        { value: '2', label: '异地' }
-      ],
-      MainLongTypeValue: '0',
-      // 被叫长途类型
-      KnownLongType: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '本地' },
-        { value: '2', label: '异地' }
-      ],
-      KnownLongTypeValue: '0',
-      // 主叫网络类型
-      MainNetworkType: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '移网' },
-        { value: '2', label: '固网' }
-      ],
-      MainNetworkTypeValue: '0',
-      // 被叫网络类型
-      KnownNetworkType: [
-        { value: '0', label: '全部' },
-        { value: '1', label: '移网' },
-        { value: '2', label: '固网' }
-      ],
-      KnownNetworkTypeValue: '0',
-      value1: ''
+      ProvincialCompany: [],
+      typeList: [],
+      operators: [],
+      SettlementDirection: [],
+      LongType: [],
+      NetworkType: [],
+      TelType: [],
+      formData: {
+        // 省公司
+        provincial_company: '全部',
+        // 业务类型
+        type: '全部',
+        // 对端运营商
+        operatorsValue: '全部',
+        // 结算方向
+        SettlementDirectionValue: '全部',
+        // 主叫长途类型
+        MainLongTypeValue: '全部',
+        // 被叫长途类型
+        KnownLongTypeValue: '全部',
+        // 主叫网络类型
+        MainNetworkTypeValue: '全部',
+        // 被叫网络类型
+        KnownNetworkTypeValue: '全部',
+        // 主叫号码类型
+        KnownTelTypeValue: '全部',
+        // 主叫号码类型
+        MainTelTypeValue: '全部',
+        time: ''
+      }
     }
   },
   methods: {},
-  created () {}
+  created () {
+    this.ProvincialCompany = ProvincialCompany
+    this.typeList = typeList
+    this.operators = operators
+    this.SettlementDirection = SettlementDirection
+    this.LongType = LongType
+    this.NetworkType = NetworkType
+    this.TelType = TelType
+  }
 }
 </script>
 <style scoped>

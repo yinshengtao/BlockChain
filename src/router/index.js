@@ -18,21 +18,14 @@ const routes = [
     name: 'SideBar',
     component: () => import('../views/layout/index.vue'),
     children: [
-      { path: '/home', name: 'Home', component: () => import('../views/home/index.vue') },
+      // { path: '/home', name: 'Home', component: () => import('../views/home/index.vue') },
       { path: '/accept', name: 'Accept', component: () => import('../views/accept/index.vue') },
       { path: '/day', name: 'Day', component: () => import('../views/day/index.vue') },
       { path: '/difference', name: 'Difference', component: () => import('../views/difference/index.vue') },
       { path: '/statistics', name: 'Statistics', component: () => import('../views/statistics/index.vue') },
-      {
-        path: '/user',
-        name: 'User',
-        redirect: '/userInfo',
-        component: () => import('../views/user/index.vue'),
-        children: [
-          { path: '/userInfo', name: 'UserInfo', component: () => import('../views/user/userInfo.vue') },
-          { path: '/logs', name: 'Logs', component: () => import('../views/user/logs.vue') }
-        ]
-      }
+      { path: '/user', name: 'User', redirect: '/userInfo', component: () => import('../views/user/index.vue') },
+      { path: '/userInfo', name: 'UserInfo', component: () => import('../views/user/userInfo.vue') },
+      { path: '/logs', name: 'Logs', component: () => import('../views/user/logs.vue') }
     ]
   }
 ]
